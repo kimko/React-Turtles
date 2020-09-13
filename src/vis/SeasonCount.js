@@ -26,8 +26,6 @@ const SeasonCountBar = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
-      // if retina is enabled, then display settings_management
-      // as an available role option.
       try {
         const res = await axios.get(
           `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
