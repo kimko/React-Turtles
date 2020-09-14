@@ -13,6 +13,7 @@ import clsx from "clsx";
 import {MainListItems} from "./dashboard/menuItems"
 import DashboardComponent from "./dashboard/DashboardComponent";
 import { SeasonCountBar } from "./vis/SeasonCount";
+import { SeasonHistogramBar } from "./vis/SeasonHistogram";
 
 const App = () => {
   const classes = useStyles();
@@ -80,6 +81,9 @@ const App = () => {
           </Route>
           <Route path="/SeasonCount">
             <SeasonCountBar />
+          </Route>
+          <Route path="/SeasonHistogram">
+            <SeasonHistogramBar />
           </Route>
         </main>
       </Router>

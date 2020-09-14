@@ -4,6 +4,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import AssessmentIcon from "@material-ui/icons/Assessment";
+import TuneIcon from "@material-ui/icons/Tune";
 
 // router dom
 import { Link } from "react-router-dom";
@@ -46,6 +47,18 @@ export const MainListItems = () => {
           <AssessmentIcon />
         </ListItemIcon>
         <ListItemText primary="Season Count" />
+      </ListItem>
+      <ListItem
+        button
+        selected={selectedIndex === 2}
+        onClick={(event) => handleListItemClick(event, 2)}
+        component={Link}
+        to="/SeasonHistogram"
+      >
+        <ListItemIcon>
+          <TuneIcon />
+        </ListItemIcon>
+        <ListItemText primary="Season Histogram" />
       </ListItem>
     </div>
   );
