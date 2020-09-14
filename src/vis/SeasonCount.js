@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import clsx from "clsx";
 
 import axios from "axios";
 
@@ -18,8 +17,9 @@ import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import useStyles from "../helper/styles";
+import Title from "../helper/Title";
 
-const SeasonCountBar = () => {
+const SeasonCountBar = (props) => {
   const [bars, setBars] = useState(<VictoryBar />);
   const [alert, setAlert] = useState("");
   const [legendData, setLegendData] = useState([]);
@@ -46,7 +46,6 @@ const SeasonCountBar = () => {
   }, []);
 
   const classes = useStyles();
-  const paper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div>
@@ -56,9 +55,9 @@ const SeasonCountBar = () => {
       <Container className={classes.container}>
         {/* this makes it fit to to paper 👇 */}
         <div style={{ display: "flex", flexWrap: "wrap" }}>
-          <Paper className={paper}>
+          <Paper>
             {/* this makes it fit to to paper 👆 */}
-            <h1>Count per Season</h1>
+            <Title>Count per Season</Title>
             {loading && <CircularProgress />}
 
             {/* wrapper component that plots all of its children on the same scale.  */}
