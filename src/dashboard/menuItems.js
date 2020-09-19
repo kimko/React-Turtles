@@ -13,6 +13,7 @@ export const MainListItems = () => {
   const listRoute = {
     "/": 0,
     "/SeasonCount": 1,
+    "/SeasonHistogram": 2,
   };
   const [selectedIndex, setSelectedIndex] = React.useState(
     listRoute[window.location.pathname]
