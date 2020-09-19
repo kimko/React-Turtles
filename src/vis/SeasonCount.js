@@ -34,7 +34,14 @@ const SeasonCountBar = (props) => {
         console.log(turtleData);
         const barElements = Object.keys(turtleData).map((key, index) => {
           setLegendData((legendData) => [...legendData, { name: key }]);
-          return <VictoryBar data={turtleData[key]} x="Period" y="Count" />;
+          return (
+            <VictoryBar
+              data={turtleData[key]}
+              x="Period"
+              y="Count"
+              key={"bar" + key}
+            />
+          );
         });
         setBars(barElements);
         setLoading(false);
@@ -53,10 +60,7 @@ const SeasonCountBar = (props) => {
       {alert !== "" && <Alert severity="error">{alert}</Alert>}
 
       <Container className={classes.container}>
-        {/* this makes it fit to to paper 👇 */}
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
           <Paper>
-            {/* this makes it fit to to paper 👆 */}
             <Title>Count per Season</Title>
             {loading && <CircularProgress />}
 
@@ -87,7 +91,6 @@ const SeasonCountBar = (props) => {
               </VictoryChart>
             )}
           </Paper>
-        </div>
       </Container>
     </div>
   );
