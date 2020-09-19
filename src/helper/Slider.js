@@ -19,7 +19,7 @@ const DiscreteSlider = (props) => {
         {props.title}
       </Typography>
       <Slider
-        defaultValue={2019}
+        defaultValue={props.defaultValue}
         aria-labelledby="discrete-slider-small-steps"
         valueLabelDisplay="on"
         marks

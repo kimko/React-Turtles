@@ -89,18 +89,10 @@ const SeasonHistogramBar = () => {
             <VictoryChart
               containerComponent={
                 <VictoryVoronoiContainer
+                  labels={({ datum }) => datum.Count}
                   voronoiDimension="x"
                   labelComponent={
-                    <VictoryTooltip
-                      constrainToVisibleArea
-                      style={{
-                        fontSize: 6,
-                      }}
-                      flyoutStyle={{
-                        fill: "#24232a",
-                        strokeWidth: 0.5,
-                      }}
-                    />
+                    <VictoryTooltip  dy={-7} constrainToVisibleArea />
                   }
                 />
               }
@@ -149,11 +141,11 @@ const SeasonHistogramBar = () => {
             </VictoryChart>
           )}
           {!loading && (
-            <YearSlider year={yearGroup1} setYear={setYearGroup1} years={years} title="Compare Years" />
+            <YearSlider year={yearGroup1} setYear={setYearGroup1} years={years} title="Compare Years" defaultValue={2014} />
             
           )}
           {!loading && (
-            <YearSlider year={yearGroup2} setYear={setYearGroup2} years={years}/>
+            <YearSlider year={yearGroup2} setYear={setYearGroup2} years={years} defaultValue={2018}/>
             
           )}
         </Paper>
@@ -171,7 +163,7 @@ const SliderContainer = styled.div`
   }
 `;
 
-const YearSlider = ({ year, setYear, years, title }) => {
+const YearSlider = ({ year, setYear, years, title, defaultValue }) => {
   const [value, setValue] = React.useState(0);
 
   const first_year = years[0];
@@ -186,6 +178,7 @@ const YearSlider = ({ year, setYear, years, title }) => {
             setYear(newValue);
           }
         }}
+        defaultValue={defaultValue}
         value={value}
         maxValue={last_year}
         minValue={first_year}
