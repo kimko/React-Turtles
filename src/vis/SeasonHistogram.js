@@ -8,6 +8,7 @@ import {
   VictoryBar,
   VictoryChart,
   VictoryAxis,
+  VictoryGroup,
   VictoryTheme,
   VictoryVoronoiContainer,
   VictoryTooltip,
@@ -42,7 +43,8 @@ const SeasonHistogramBar = () => {
   const [alert, setAlert] = useState("");
   const [maxCount, setMaxCount] = useState(100);
   const [data, setData] = useState();
-  const [year, setYear] = React.useState('2020');
+  const [yearGroup1, setYearGroup1] = React.useState(2013);
+  const [yearGroup2, setYearGroup2] = React.useState(2020);
   const [years, setYears] = React.useState([2020]);
 
   const classes = useStyles();
@@ -81,9 +83,9 @@ const SeasonHistogramBar = () => {
 
       <Container className={classes.container}>
         <Paper>
-            <Title>Season Histogram</Title>
-            {loading && <CircularProgress />}
-            {!loading && (
+          <Title>Season Histogram</Title>
+          {loading && <CircularProgress />}
+          {!loading && (
             <VictoryChart
               containerComponent={
                 <VictoryVoronoiContainer
@@ -117,7 +119,7 @@ const SeasonHistogramBar = () => {
                 }}
                 label="# Turtle Counts"
                 dependentAxis
-                domain={{ y: [0, maxCount+ 10] }}
+                domain={{ y: [0, maxCount + 10] }}
               />
               <VictoryAxis
                 style={{
@@ -126,15 +128,34 @@ const SeasonHistogramBar = () => {
                 }}
                 label="Season"
               />
+                              <VictoryGroup
+                  offset={20}
+                  colorScale={"qualitative"}
+                  categories={{ x: ["Early", "Late", "Total"] }}
+                >
               <VictoryBar
                 animate={{ duration: 100 }}
-                data={data[year]}
+                data={data[yearGroup1]}
                 x="Period"
                 y="Count"
               />
-            </VictoryChart>)}
-            {!loading && (
-            <YearSlider year={year} setYear={setYear} years={years}/>)}
+              <VictoryBar
+                animate={{ duration: 100 }}
+                data={data[yearGroup2]}
+                x="Period"
+                y="Count"
+              />
+              </VictoryGroup>
+            </VictoryChart>
+          )}
+          {!loading && (
+            <YearSlider year={yearGroup1} setYear={setYearGroup1} years={years} title="Compare Years" />
+            
+          )}
+          {!loading && (
+            <YearSlider year={yearGroup2} setYear={setYearGroup2} years={years}/>
+            
+          )}
         </Paper>
       </Container>
     </div>
@@ -150,7 +171,7 @@ const SliderContainer = styled.div`
   }
 `;
 
-const YearSlider = ({ year, setYear, years }) => {
+const YearSlider = ({ year, setYear, years, title }) => {
   const [value, setValue] = React.useState(0);
 
   const first_year = years[0];
@@ -169,6 +190,7 @@ const YearSlider = ({ year, setYear, years }) => {
         maxValue={last_year}
         minValue={first_year}
         steps={total_years}
+        title={title}
       />
     </SliderContainer>
   );

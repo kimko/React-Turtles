@@ -15,7 +15,8 @@ const DiscreteSlider = (props) => {
   return (
     <div className={classes.root}>
       <Typography id="discrete-slider" gutterBottom>
-        {`${props.steps} Years ${props.minValue}..${props.maxValue}`}
+        {/* {`${props.steps} Years ${props.minValue}..${props.maxValue}`} */}
+        {props.title}
       </Typography>
       <Slider
         defaultValue={2019}
