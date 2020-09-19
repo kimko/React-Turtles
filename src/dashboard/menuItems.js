@@ -30,7 +30,7 @@ export const MainListItems = () => {
         selected={selectedIndex === 0}
         onClick={(event) => handleListItemClick(event, 0)}
         component={Link}
-        to="/React-Turtles"
+        to="/React-Turtles/"
       >
         <ListItemIcon>
           <DashboardIcon />
@@ -42,7 +42,7 @@ export const MainListItems = () => {
         selected={selectedIndex === 1}
         onClick={(event) => handleListItemClick(event, 1)}
         component={Link}
-        to="/SeasonCount"
+        to="/React-Turtles/SeasonCount"
       >
         <ListItemIcon>
           <AssessmentIcon />
@@ -54,7 +54,7 @@ export const MainListItems = () => {
         selected={selectedIndex === 2}
         onClick={(event) => handleListItemClick(event, 2)}
         component={Link}
-        to="/SeasonHistogram"
+        to="/React-Turtles/SeasonHistogram"
       >
         <ListItemIcon>
           <TuneIcon />

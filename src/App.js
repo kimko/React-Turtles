@@ -76,13 +76,13 @@ const App = () => {
           <Divider />
         </Drawer>
         <main className={classes.content}>
-          <Route exact path="/React-Turtles">
+          <Route exact path="/React-Turtles/">
             <DashboardComponent />
           </Route>
-          <Route path="/SeasonCount">
+          <Route path="/React-Turtles/SeasonCount">
             <SeasonCountBar />
           </Route>
-          <Route path="/SeasonHistogram">
+          <Route path="/React-Turtles/SeasonHistogram">
             <SeasonHistogramBar />
           </Route>
         </main>
