@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 export const MainListItems = () => {
   const listRoute = {
-    "/": 0,
+    "/React-Turtles": 0,
     "/SeasonCount": 1,
     "/SeasonHistogram": 2,
   };
@@ -30,7 +30,7 @@ export const MainListItems = () => {
         selected={selectedIndex === 0}
         onClick={(event) => handleListItemClick(event, 0)}
         component={Link}
-        to="/"
+        to="/React-Turtles"
       >
         <ListItemIcon>
           <DashboardIcon />

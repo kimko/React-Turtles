@@ -76,7 +76,7 @@ const App = () => {
           <Divider />
         </Drawer>
         <main className={classes.content}>
-          <Route exact path="/">
+          <Route exact path="/React-Turtles">
             <DashboardComponent />
           </Route>
           <Route path="/SeasonCount">
