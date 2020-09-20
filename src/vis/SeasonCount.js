@@ -60,37 +60,37 @@ const SeasonCountBar = (props) => {
       {alert !== "" && <Alert severity="error">{alert}</Alert>}
 
       <Container className={classes.container}>
-          <Paper>
-            <Title>Count per Season</Title>
-            {loading && <CircularProgress />}
+        <Paper>
+          <Title>Count per Season</Title>
+          {loading && <CircularProgress />}
 
-            {/* wrapper component that plots all of its children on the same scale.  */}
-            {!loading && (
-              <VictoryChart
-                // domainPadding will add space to each side of VictoryBar to
-                // prevent it from overlapping the axis
-                domainPadding={{ x: 100 }}
-                theme={VictoryTheme.material}
-                width={800}
-                hight={"100%"}
+          {/* wrapper component that plots all of its children on the same scale.  */}
+          {!loading && (
+            <VictoryChart
+              // domainPadding will add space to each side of VictoryBar to
+              // prevent it from overlapping the axis
+              domainPadding={{ x: 100 }}
+              theme={VictoryTheme.material}
+              width={800}
+              hight={"100%"}
+            >
+              <VictoryLegend
+                data={legendData}
+                orientation="horizontal"
+                colorScale={"qualitative"}
+              />
+              <VictoryAxis dependentAxis={true} />
+              <VictoryAxis />
+              <VictoryGroup
+                offset={10}
+                colorScale={"qualitative"}
+                categories={{ x: ["Early", "Late", "Total"] }}
               >
-                <VictoryLegend
-                  data={legendData}
-                  orientation="horizontal"
-                  colorScale={"qualitative"}
-                />
-                <VictoryAxis dependentAxis={true} />
-                <VictoryAxis />
-                <VictoryGroup
-                  offset={10}
-                  colorScale={"qualitative"}
-                  categories={{ x: ["Early", "Late", "Total"] }}
-                >
-                  {bars}
-                </VictoryGroup>
-              </VictoryChart>
-            )}
-          </Paper>
+                {bars}
+              </VictoryGroup>
+            </VictoryChart>
+          )}
+        </Paper>
       </Container>
     </div>
   );
