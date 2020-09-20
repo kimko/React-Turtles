@@ -12,6 +12,7 @@ import {MainListItems} from "./dashboard/menuItems"
 import DashboardComponent from "./dashboard/DashboardComponent";
 import { SeasonCountBar } from "./vis/SeasonCount";
 import { SeasonHistogramBar } from "./vis/SeasonHistogram";
+import { ExploreScatter } from "./vis/Explore";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,9 +22,10 @@ import {
   faSlidersH,
   faBars,
   faChevronLeft,
+  faCogs,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faColumns, faChartBar, faSlidersH, faBars, faChevronLeft);
+library.add(faColumns, faChartBar, faSlidersH, faBars, faChevronLeft, faCogs);
 
 const App = () => {
   const classes = useStyles();
@@ -94,6 +96,9 @@ const App = () => {
           </Route>
           <Route path="/React-Turtles/SeasonHistogram">
             <SeasonHistogramBar />
+          </Route>
+          <Route path="/React-Turtles/Explore">
+            <ExploreScatter />
           </Route>
         </main>
       </Router>

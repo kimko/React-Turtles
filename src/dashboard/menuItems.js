@@ -8,6 +8,7 @@ export const MainListItems = () => {
     "/React-Turtles/": 0,
     "/React-Turtles/SeasonCount": 1,
     "/React-Turtles/SeasonHistogram": 2,
+    "/React-Turtles/Explore": 3,
   };
   const [selectedIndex, setSelectedIndex] = React.useState(
     listRoute[window.location.pathname]
@@ -38,6 +39,14 @@ export const MainListItems = () => {
         to="/React-Turtles/SeasonHistogram"
         label="Season Histogram"
         icon="sliders-h"
+      />
+      <CusomListItem
+        itemNo={3}
+        selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex}
+        to="/React-Turtles/Explore"
+        label="Exlore"
+        icon="cogs"
       />
     </div>
   );

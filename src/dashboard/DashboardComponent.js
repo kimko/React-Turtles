@@ -7,6 +7,7 @@ import useStyles from "../helper/styles";
 
 import { SeasonCountBar } from "../vis/SeasonCount";
 import { SeasonHistogramBar } from "../vis/SeasonHistogram";
+import { ExploreScatter } from "../vis/Explore";
 
 const DashbardComponent = () => {
   const classes = useStyles();
@@ -20,6 +21,9 @@ const DashbardComponent = () => {
           </Grid>
           <Grid item md={6}>
             <SeasonHistogramBar />
+          </Grid>
+          <Grid item md={6}>
+            <ExploreScatter />
           </Grid>
         </Grid>
       </Container>
