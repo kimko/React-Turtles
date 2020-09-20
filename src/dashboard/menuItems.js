@@ -10,6 +10,32 @@ import Tooltip from "@material-ui/core/Tooltip";
 // router dom
 import { Link } from "react-router-dom";
 
+
+// POC
+export const CusomListItem = (props) => {
+  const handleListItemClick = (event, index) => {
+    props.setSelectedIndex(index);
+  };
+
+  return (
+    <ListItem
+      button
+      selected={props.selectedIndex === props.itemNo}
+      onClick={(event) => handleListItemClick(event, props.itemNo)}
+      component={Link}
+      to={props.to}
+    >
+      <Tooltip title={props.label} placement="right-start">
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+      </Tooltip>
+      <ListItemText primary={props.label} />
+    </ListItem>
+  );
+};
+
+
 export const MainListItems = () => {
   const listRoute = {
     "/React-Turtles": 0,
@@ -26,7 +52,15 @@ export const MainListItems = () => {
 
   return (
     <div>
-      <ListItem
+      <CusomListItem
+        itemNo={0}
+        selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex}
+        to="/React-Turtles/"
+        label="Dashboard"
+        // icon={<DashboardIcon  />}
+      />
+      {/* <ListItem
         button
         selected={selectedIndex === 0}
         onClick={(event) => handleListItemClick(event, 0)}
@@ -39,7 +73,7 @@ export const MainListItems = () => {
           </ListItemIcon>
         </Tooltip>
         <ListItemText primary="Dashboard" />
-      </ListItem>
+      </ListItem> */}
       <ListItem
         button
         selected={selectedIndex === 1}
