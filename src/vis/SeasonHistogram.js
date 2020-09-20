@@ -17,12 +17,11 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Container from "@material-ui/core/Container";
 
 import useStyles from "../helper/styles";
 import Title from "../helper/Title";
 import { DiscreteSlider } from "../helper/Slider";
-
-const Container = styled.div``;
 
 const sharedAxisStyles = {
   axis: {
