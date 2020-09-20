@@ -42,8 +42,7 @@ const SeasonHistogramBar = () => {
   const [alert, setAlert] = useState("");
   const [maxCount, setMaxCount] = useState(100);
   const [data, setData] = useState();
-  const [yearGroup1, setYearGroup1] = React.useState(2013);
-  const [yearGroup2, setYearGroup2] = React.useState(2020);
+  const [yearGroup, setYearGroup1] = React.useState([2013, 2019]);
   const [years, setYears] = React.useState([2020]);
 
   const classes = useStyles();
@@ -59,7 +58,7 @@ const SeasonHistogramBar = () => {
         let max = 0;
         setYears(
           Object.keys(turtleData).map((year) => {
-            const parsedYear = parseInt(year, 10);;
+            const parsedYear = parseInt(year, 10);
             if (turtleData[parsedYear][2].Count > max) {
               max = turtleData[parsedYear][2].Count;
             }
@@ -126,13 +125,13 @@ const SeasonHistogramBar = () => {
               >
                 <VictoryBar
                   animate={{ duration: 100 }}
-                  data={data[yearGroup1]}
+                  data={data[yearGroup[0]]}
                   x="Period"
                   y="Count"
                 />
                 <VictoryBar
                   animate={{ duration: 100 }}
-                  data={data[yearGroup2]}
+                  data={data[yearGroup[1]]}
                   x="Period"
                   y="Count"
                 />
@@ -141,26 +140,18 @@ const SeasonHistogramBar = () => {
           )}
           {!loading && (
             <YearSlider
-              year={yearGroup1}
+              year={yearGroup}
               setYear={setYearGroup1}
               years={years}
               title="Compare Years"
-              defaultValue={2014}
-            />
-          )}
-          {!loading && (
-            <YearSlider
-              year={yearGroup2}
-              setYear={setYearGroup2}
-              years={years}
-              defaultValue={2018}
+              defaultValue={[2013, 2019]}
             />
           )}
         </Paper>
       </Container>
     </div>
   );
-};
+};;;;;
 
 const SliderContainer = styled.div`
   padding: 16px 25px 10px;

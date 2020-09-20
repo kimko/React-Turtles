@@ -20,7 +20,7 @@ const DiscreteSlider = (props) => {
       </Typography>
       <Slider
         defaultValue={props.defaultValue}
-        aria-labelledby="discrete-slider-small-steps"
+        aria-labelledby="range-slider"
         valueLabelDisplay="on"
         marks
         min={props.minValue}
