@@ -17,12 +17,11 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Container from "@material-ui/core/Container";
 
 import useStyles from "../helper/styles";
 import Title from "../helper/Title";
 import { DiscreteSlider } from "../helper/Slider";
-
-const Container = styled.div``;
 
 const sharedAxisStyles = {
   axis: {
@@ -92,7 +91,7 @@ const SeasonHistogramBar = () => {
                   labels={({ datum }) => datum.Count}
                   voronoiDimension="x"
                   labelComponent={
-                    <VictoryTooltip  dy={-7} constrainToVisibleArea />
+                    <VictoryTooltip dy={-7} constrainToVisibleArea />
                   }
                 />
               }
@@ -120,33 +119,42 @@ const SeasonHistogramBar = () => {
                 }}
                 label="Season"
               />
-                              <VictoryGroup
-                  offset={20}
-                  colorScale={"qualitative"}
-                  categories={{ x: ["Early", "Late", "Total"] }}
-                >
-              <VictoryBar
-                animate={{ duration: 100 }}
-                data={data[yearGroup1]}
-                x="Period"
-                y="Count"
-              />
-              <VictoryBar
-                animate={{ duration: 100 }}
-                data={data[yearGroup2]}
-                x="Period"
-                y="Count"
-              />
+              <VictoryGroup
+                offset={20}
+                colorScale={"qualitative"}
+                categories={{ x: ["Early", "Late", "Total"] }}
+              >
+                <VictoryBar
+                  animate={{ duration: 100 }}
+                  data={data[yearGroup1]}
+                  x="Period"
+                  y="Count"
+                />
+                <VictoryBar
+                  animate={{ duration: 100 }}
+                  data={data[yearGroup2]}
+                  x="Period"
+                  y="Count"
+                />
               </VictoryGroup>
             </VictoryChart>
           )}
           {!loading && (
-            <YearSlider year={yearGroup1} setYear={setYearGroup1} years={years} title="Compare Years" defaultValue={2014} />
-            
+            <YearSlider
+              year={yearGroup1}
+              setYear={setYearGroup1}
+              years={years}
+              title="Compare Years"
+              defaultValue={2014}
+            />
           )}
           {!loading && (
-            <YearSlider year={yearGroup2} setYear={setYearGroup2} years={years} defaultValue={2018}/>
-            
+            <YearSlider
+              year={yearGroup2}
+              setYear={setYearGroup2}
+              years={years}
+              defaultValue={2018}
+            />
           )}
         </Paper>
       </Container>
