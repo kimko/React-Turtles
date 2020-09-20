@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Material UI
 import { AppBar, CssBaseline, Drawer, Divider, IconButton, List, Toolbar, Typography } from "@material-ui/core";
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import MenuIcon from '@material-ui/icons/Menu';
 
 // Custom styling
 import useStyles from "./helper/styles";
@@ -14,6 +12,18 @@ import {MainListItems} from "./dashboard/menuItems"
 import DashboardComponent from "./dashboard/DashboardComponent";
 import { SeasonCountBar } from "./vis/SeasonCount";
 import { SeasonHistogramBar } from "./vis/SeasonHistogram";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faColumns,
+  faChartBar,
+  faSlidersH,
+  faBars,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(faColumns, faChartBar, faSlidersH, faBars, faChevronLeft);
 
 const App = () => {
   const classes = useStyles();
@@ -46,7 +56,7 @@ const App = () => {
                 open && classes.menuButtonHidden
               )}
             >
-              <MenuIcon />
+              <FontAwesomeIcon icon="bars" />
             </IconButton>
             <Typography
               component="h1"
@@ -68,7 +78,7 @@ const App = () => {
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
+                <FontAwesomeIcon icon="chevron-left" />
             </IconButton>
           </div>
           <Divider />
