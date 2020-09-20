@@ -72,7 +72,7 @@ const SeasonCountBar = (props) => {
               domainPadding={{ x: 100 }}
               theme={VictoryTheme.material}
               width={800}
-              hight={"100%"}
+              height={400}
             >
               <VictoryLegend
                 data={legendData}

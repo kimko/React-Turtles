@@ -78,7 +78,7 @@ const App = () => {
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={handleDrawerClose}>
-                <FontAwesomeIcon icon="chevron-left" />
+              <FontAwesomeIcon icon="chevron-left" />
             </IconButton>
           </div>
           <Divider />

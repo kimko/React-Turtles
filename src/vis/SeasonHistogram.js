@@ -96,8 +96,8 @@ const SeasonHistogramBar = () => {
               }
               domainPadding={{ x: 100 }}
               theme={VictoryTheme.material}
-              width={400}
-              height={250}
+              width={300}
+              height={200}
             >
               <VictoryAxis
                 style={{
