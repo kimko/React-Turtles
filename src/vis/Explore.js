@@ -7,6 +7,7 @@ import {
   VictoryChart,
   VictoryScatter,
   VictoryAxis,
+  VictoryLine,
   VictoryTheme,
   VictoryGroup,
   VictoryLegend,
@@ -24,11 +25,16 @@ const ExploreScatter = (props) => {
   const [alert, setAlert] = useState("");
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
+  const [xdim, setXDim] = useState('Annuli');
+  const [ydim, setYDim] = useState('Weight');
   useEffect(() => {
     (async () => {
       try {
+        // const res = await axios.get(
+        //   `https://bmd-micro.herokuapp.com/getTwoDimensionsPerGenderVictory`
+        // );
         const res = await axios.get(
-          `https://bmd-micro.herokuapp.com/getTwoDimensionsPerGenderVictory`
+          `http://0.0.0.0:5000/getTwoDimensionsPerGenderVictory?dim1=${xdim}&dim2=${ydim}`
         );
         const turtleData = res.data.data.turtles;
         console.log(turtleData);
@@ -45,6 +51,12 @@ const ExploreScatter = (props) => {
 
   const classes = useStyles();
 
+  const jitter = () => {
+    if (Math.floor(Math.random() * 2))
+      return Math.floor(Math.random() * 50) /100;
+    else
+      return -Math.floor(Math.random() * 50) /100;
+  }
   return (
     <div>
       <div className={classes.appBarSpacer} />
@@ -65,18 +77,32 @@ const ExploreScatter = (props) => {
               <VictoryScatter
                 style={{ data: { fill: "red" } }}
                 size={3}
-                data={data["f"]}
+                data={data["f"].data}
+                y={'Weight'}
+                x={(d) => d.Annuli + jitter()}
+              />
+              {/* <VictoryLine
+                data={data["f"].trend.data}
+                style={{ data: { stroke: "red" } }}
               />
               <VictoryScatter
                 style={{ data: { fill: "blue" } }}
                 size={3}
-                data={data["m"]}
+                data={data["m"].data}
+              />
+              <VictoryLine
+                data={data["m"].trend.data}
+                style={{ data: { stroke: "blue" } }}
               />
               <VictoryScatter
                 style={{ data: { fill: "green" } }}
                 size={3}
-                data={data["unknown"]}
+                data={data["unknown"].data}
               />
+              <VictoryLine
+                data={data["unknown"].trend.data}
+                style={{ data: { stroke: "green" } }}
+              /> */}
             </VictoryChart>
           )}
         </Paper>
