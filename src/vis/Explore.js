@@ -26,6 +26,10 @@ const ExploreScatter = (props) => {
   const [data, setData] = useState();
   const [xDim, setXDim] = useState('Annuli');
   const [yDim, setYDim] = useState('Weight');
+  const [legendF, setLegendF] = useState("female");
+  const [legendM, setLegendM] = useState("male");
+  const [legendU, setLegendU] = useState("unknown");
+
   useEffect(() => {
     (async () => {
       try {
@@ -46,6 +50,9 @@ const ExploreScatter = (props) => {
         console.log(turtleData["f"].data[0]);
         setData(turtleData);
         setLoading(false);
+        setLegendF(`${turtleData["f"].data.length} f`);
+        setLegendM(`${turtleData["m"].data.length} m`);
+        setLegendU(`${turtleData["unknown"].data.length} ?`);
       } catch (err) {
         console.log(err.message);
         setAlert(err.message);
@@ -76,12 +83,9 @@ const ExploreScatter = (props) => {
             <SimpleSelect title="Y Axis" setValue={setYDim} value={yDim} />
           </Grid>
           {loading && <CircularProgress />}
-
-          {/* wrapper component that plots all of its children on the same scale.  */}
           {!loading && (
             <VictoryChart
               theme={VictoryTheme.material}
-              //   domain={{ x: [0, 5], y: [0, 7] }}
               width={1000}
               height={500}
             >
@@ -92,7 +96,7 @@ const ExploreScatter = (props) => {
                 gutter={20}
                 style={{ border: { stroke: "black" } }}
                 colorScale={["#ff5252", "#1565c0", "#43a047"]}
-                data={[{ name: "female" }, { name: "male" }, { name: "???" }]}
+                data={[{ name: legendF }, { name: legendM }, { name: legendU }]}
               />
               <VictoryScatter
                 style={{ data: { fill: "#ff5252" } }}
