@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "59d4af0050175277a4c608052f8b827b",
+    "revision": "c4ee71572872d9e2b5f3bf05a60258e9",
     "url": "/React-Turtles/index.html"
   },
   {
-    "revision": "db42c597e0b7f0134122",
+    "revision": "2aa80920a1352e64b54d",
     "url": "/React-Turtles/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "f338e4a792ef50e1c173",
-    "url": "/React-Turtles/static/js/2.2023c5a3.chunk.js"
+    "revision": "e393424754e12ab34f0b",
+    "url": "/React-Turtles/static/js/2.f57413df.chunk.js"
   },
   {
     "revision": "89b0379e7bcda1a468d8b0343aeb4e53",
-    "url": "/React-Turtles/static/js/2.2023c5a3.chunk.js.LICENSE.txt"
+    "url": "/React-Turtles/static/js/2.f57413df.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "db42c597e0b7f0134122",
-    "url": "/React-Turtles/static/js/main.c4177f88.chunk.js"
+    "revision": "2aa80920a1352e64b54d",
+    "url": "/React-Turtles/static/js/main.5cb8acab.chunk.js"
   },
   {
     "revision": "706f0d4c1b0d873adcc2",
