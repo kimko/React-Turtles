@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/React-Turtles/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/React-Turtles/static/js/main.29d210dc.chunk.js",
-    "main.js.map": "/React-Turtles/static/js/main.29d210dc.chunk.js.map",
+    "main.js": "/React-Turtles/static/js/main.08eddcd4.chunk.js",
+    "main.js.map": "/React-Turtles/static/js/main.08eddcd4.chunk.js.map",
     "runtime-main.js": "/React-Turtles/static/js/runtime-main.5ac95c40.js",
     "runtime-main.js.map": "/React-Turtles/static/js/runtime-main.5ac95c40.js.map",
-    "static/js/2.50a9711e.chunk.js": "/React-Turtles/static/js/2.50a9711e.chunk.js",
-    "static/js/2.50a9711e.chunk.js.map": "/React-Turtles/static/js/2.50a9711e.chunk.js.map",
+    "static/js/2.8b0c2130.chunk.js": "/React-Turtles/static/js/2.8b0c2130.chunk.js",
+    "static/js/2.8b0c2130.chunk.js.map": "/React-Turtles/static/js/2.8b0c2130.chunk.js.map",
     "index.html": "/React-Turtles/index.html",
-    "precache-manifest.31eed934e3a69a6fb6ef552168bc006f.js": "/React-Turtles/precache-manifest.31eed934e3a69a6fb6ef552168bc006f.js",
+    "precache-manifest.93c8c96c9573465f0106a0b855045aaa.js": "/React-Turtles/precache-manifest.93c8c96c9573465f0106a0b855045aaa.js",
     "service-worker.js": "/React-Turtles/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/React-Turtles/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.50a9711e.chunk.js.LICENSE.txt": "/React-Turtles/static/js/2.50a9711e.chunk.js.LICENSE.txt"
+    "static/js/2.8b0c2130.chunk.js.LICENSE.txt": "/React-Turtles/static/js/2.8b0c2130.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5ac95c40.js",
-    "static/js/2.50a9711e.chunk.js",
+    "static/js/2.8b0c2130.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.29d210dc.chunk.js"
+    "static/js/main.08eddcd4.chunk.js"
   ]
 }
