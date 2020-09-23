@@ -37,7 +37,7 @@ const sharedAxisStyles = {
   },
 };
 
-const SeasonHistogramBar = () => {
+const SeasonHistogramBar = (props) => {
   const [loading, setLoading] = useState(true);
   const [alert, setAlert] = useState("");
   const [maxCount, setMaxCount] = useState(100);
@@ -50,9 +50,17 @@ const SeasonHistogramBar = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(
-          `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
-        );
+        // TODO refactor 👇😬
+        let res;
+        if (props.dataSource)
+          res = await axios.get(
+            `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
+          );
+        else
+          res = await axios.get(
+            `http://0.0.0.0:5000/sumYearSeasonVictory`
+          );
+        // 👆
         const turtleData = res.data.data.turtles;
         setData(turtleData);
         let max = 0;
@@ -72,7 +80,7 @@ const SeasonHistogramBar = () => {
         setAlert(err.message);
       }
     })();
-  }, []);
+  }, [props.dataSource]);
 
   return (
     <div>

@@ -9,7 +9,7 @@ import { SeasonCountBar } from "../vis/SeasonCount";
 import { SeasonHistogramBar } from "../vis/SeasonHistogram";
 import { ExploreScatter } from "../vis/Explore";
 
-const DashbardComponent = () => {
+const DashbardComponent = (props) => {
   const classes = useStyles();
   return (
     <div>
@@ -17,13 +17,13 @@ const DashbardComponent = () => {
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={1}>
           <Grid item md={6}>
-            <SeasonCountBar />
+            <SeasonCountBar dataSource={props.dataSource}    />
           </Grid>
           <Grid item md={6}>
-            <SeasonHistogramBar />
+            <SeasonHistogramBar dataSource={props.dataSource}    />
           </Grid>
           <Grid item md={6}>
-            <ExploreScatter />
+            <ExploreScatter dataSource={props.dataSource}    />
           </Grid>
         </Grid>
       </Container>

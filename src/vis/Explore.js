@@ -33,17 +33,17 @@ const ExploreScatter = (props) => {
   useEffect(() => {
     (async () => {
       try {
-        // TODO: toggle this via configuration 
-        // const res = await axios.get(
-        //   `http://0.0.0.0:5000/getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`,
-        //   {
-        //     headers: {
-        //       'Access-Control-Allow-Origin': '*',
-        //     },}
-        // );
-        const res = await axios.get(
-          `https://bmd-micro.herokuapp.com/getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`
-        );
+        // TODO refactor 👇😬
+        let res;
+        if (props.dataSource)
+          res = await axios.get(
+            `https://bmd-micro.herokuapp.com/getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`,
+          );
+        else
+          res = await axios.get(
+            `http://0.0.0.0:5000/getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`,
+          );
+        // 👆
         const turtleData = res.data.data.turtles;
         console.log(turtleData);
         console.log("done");
@@ -58,7 +58,7 @@ const ExploreScatter = (props) => {
         setAlert(err.message);
       }
     })();
-  }, [xDim, yDim]);
+  }, [xDim, yDim, props.dataSource]);
 
   const classes = useStyles();
 

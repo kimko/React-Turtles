@@ -27,11 +27,18 @@ const SeasonCountBar = (props) => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get(
-          `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
-        );
+        // TODO refactor 👇😬
+        let res;
+        if (props.dataSource)
+          res = await axios.get(
+            `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
+          );
+        else
+          res = await axios.get(
+            `http://0.0.0.0:5000/sumYearSeasonVictory`
+          );
+        // 👆
         const turtleData = res.data.data.turtles;
-        console.log(turtleData);
         const barElements = Object.keys(turtleData).map((key, index) => {
           setLegendData((legendData) => [...legendData, { name: key }]);
           return (
@@ -50,7 +57,7 @@ const SeasonCountBar = (props) => {
         setAlert(err.message);
       }
     })();
-  }, []);
+  }, [props.dataSource]);
 
   const classes = useStyles();
 

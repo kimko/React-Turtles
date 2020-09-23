@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Material UI
-import { AppBar, CssBaseline, Drawer, Divider, IconButton, List, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  CssBaseline,
+  Drawer,
+  Divider,
+  IconButton,
+  List,
+  Toolbar,
+  Typography,
+  Switch,
+  Grid,
+} from "@material-ui/core";
 
 // Custom styling
 import useStyles from "./helper/styles";
@@ -28,6 +39,7 @@ import {
 library.add(faColumns, faChartBar, faSlidersH, faBars, faChevronLeft, faCogs);
 
 const App = () => {
+  const [dataSource, setDataSource] = useState(true);
   const classes = useStyles();
 
   // Drawer
@@ -69,6 +81,22 @@ const App = () => {
             >
               Dashboard
             </Typography>
+            <Typography component="div">
+              <Grid component="label" container alignItems="center" spacing={1}>
+                <Grid item>data source: localhost</Grid>
+                <Grid item>
+                  <Switch
+                    checked={dataSource}
+                    onChange={(event) => {
+                      setDataSource(event.target.checked);
+                    }}
+                    color="default"
+                    inputProps={{ "aria-label": "checkbox with default color" }}
+                  />
+                </Grid>
+                <Grid item>dataservice</Grid>
+              </Grid>
+            </Typography>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -89,16 +117,16 @@ const App = () => {
         </Drawer>
         <main className={classes.content}>
           <Route exact path="/React-Turtles/">
-            <DashboardComponent />
+            <DashboardComponent dataSource={dataSource}     />
           </Route>
           <Route path="/React-Turtles/SeasonCount">
-            <SeasonCountBar />
+            <SeasonCountBar dataSource={dataSource}     />
           </Route>
           <Route path="/React-Turtles/SeasonHistogram">
-            <SeasonHistogramBar />
+            <SeasonHistogramBar dataSource={dataSource}     />
           </Route>
           <Route path="/React-Turtles/Explore">
-            <ExploreScatter />
+            <ExploreScatter dataSource={dataSource}     />
           </Route>
         </main>
       </Router>
