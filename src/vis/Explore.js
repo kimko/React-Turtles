@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import {
@@ -24,35 +23,34 @@ const ExploreScatter = (props) => {
   const [alert, setAlert] = useState("");
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
-  const [xDim, setXDim] = useState('Annuli');
-  const [yDim, setYDim] = useState('Weight');
+  const [xDim, setXDim] = useState("Annuli");
+  const [yDim, setYDim] = useState("Weight");
   const [legendF, setLegendF] = useState("female");
   const [legendM, setLegendM] = useState("male");
   const [legendU, setLegendU] = useState("unknown");
+  const cache = useRef({});
 
   useEffect(() => {
     (async () => {
       try {
         // TODO refactor 👇😬
-        let res;
-        if (props.dataSource)
-          res = await axios.get(
-            `https://bmd-micro.herokuapp.com/getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`,
-          );
-        else
-          res = await axios.get(
-            `http://0.0.0.0:5000/getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`,
-          );
-        // 👆
-        const turtleData = res.data.data.turtles;
-        console.log(turtleData);
-        console.log("done");
-        console.log(turtleData["f"].data[0]);
-        setData(turtleData);
-        setLoading(false);
-        setLegendF(`${turtleData["f"].data.length} f`);
-        setLegendM(`${turtleData["m"].data.length} m`);
-        setLegendU(`${turtleData["unknown"].data.length} ?`);
+        let url;
+        const target = `getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`;
+        if (props.dataSource) url = `https://bmd-micro.herokuapp.com/${target}`;
+        else url = `http://0.0.0.0:5000/${target}`;
+        if (cache.current[url]) {
+          const turtleData = cache.current[url];
+          setData(turtleData);
+        } else {
+          const res = await axios.get(url);
+          const turtleData = res.data.data.turtles;
+          cache.current[url] = turtleData;
+          setData(turtleData);
+          setLoading(false);
+          setLegendF(`${turtleData["f"].data.length} f`);
+          setLegendM(`${turtleData["m"].data.length} m`);
+          setLegendU(`${turtleData["unknown"].data.length} ?`);
+        }
       } catch (err) {
         console.log(err.message);
         setAlert(err.message);
@@ -63,13 +61,11 @@ const ExploreScatter = (props) => {
   const classes = useStyles();
 
   const jitter = (dim) => {
-    if (dim !== 'Annuli')
-      return 0;
+    if (dim !== "Annuli") return 0;
     if (Math.floor(Math.random() * 2))
-      return Math.floor(Math.random() * 50) /100;
-    else
-      return -Math.floor(Math.random() * 50) /100;
-  }
+      return Math.floor(Math.random() * 50) / 100;
+    else return -Math.floor(Math.random() * 50) / 100;
+  };
   return (
     <div>
       <div className={classes.appBarSpacer} />
@@ -78,7 +74,7 @@ const ExploreScatter = (props) => {
       <Container className={classes.container}>
         <Paper>
           <Title>Explore</Title>
-          <Grid container justify="left" spacing={0}>
+          <Grid container spacing={0}>
             <SimpleSelect title="X Axis" setValue={setXDim} value={xDim} />
             <SimpleSelect title="Y Axis" setValue={setYDim} value={yDim} />
           </Grid>
