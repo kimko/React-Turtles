@@ -14,14 +14,16 @@ import {
   VictoryTooltip,
 } from "victory";
 
-import Alert from "@material-ui/lab/Alert";
-import Paper from "@material-ui/core/Paper";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Container from "@material-ui/core/Container";
+import {
+  Paper,
+  Container,
+} from "@material-ui/core";
 
 import useStyles from "../helper/styles";
 import Title from "../helper/Title";
 import { DiscreteSlider } from "../helper/Slider";
+import Alert from "../helper/Alert";
+import Progress from "../helper/Progress";
 
 const sharedAxisStyles = {
   axis: {
@@ -85,12 +87,12 @@ const SeasonHistogramBar = (props) => {
   return (
     <div>
       <div className={classes.appBarSpacer} />
-      {alert !== "" && <Alert severity="error">{alert}</Alert>}
+      {alert !== "" && <Alert severity="error" message={alert} />}
 
       <Container className={classes.container}>
         <Paper>
           <Title>Season Histogram</Title>
-          {loading && <CircularProgress />}
+          {loading && (<Progress/>)}
           {!loading && (
             <VictoryChart
               containerComponent={

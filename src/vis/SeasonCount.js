@@ -11,13 +11,13 @@ import {
   VictoryLegend,
 } from "victory";
 
-import Alert from "@material-ui/lab/Alert";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 import useStyles from "../helper/styles";
 import Title from "../helper/Title";
+import Alert from "../helper/Alert";
+import Progress from "../helper/Progress";
 
 const SeasonCountBar = (props) => {
   const [bars, setBars] = useState(<VictoryBar />);
@@ -64,12 +64,12 @@ const SeasonCountBar = (props) => {
   return (
     <div>
       <div className={classes.appBarSpacer} />
-      {alert !== "" && <Alert severity="error">{alert}</Alert>}
+      {alert !== "" && <Alert severity="error" message={alert} />}
 
       <Container className={classes.container}>
         <Paper>
           <Title>Count per Season</Title>
-          {loading && <CircularProgress />}
+          {loading && (<Progress/>)}
 
           {/* wrapper component that plots all of its children on the same scale.  */}
           {!loading && (

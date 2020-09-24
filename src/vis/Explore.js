@@ -9,15 +9,15 @@ import {
   VictoryLegend,
 } from "victory";
 
-import Alert from "@material-ui/lab/Alert";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from '@material-ui/core/Grid';
 
 import useStyles from "../helper/styles";
 import Title from "../helper/Title";
 import { SimpleSelect } from "../helper/SimpleSelect";
+import Alert from "../helper/Alert";
+import Progress from "../helper/Progress";
 
 const ExploreScatter = (props) => {
   const [alert, setAlert] = useState("");
@@ -69,8 +69,7 @@ const ExploreScatter = (props) => {
   return (
     <div>
       <div className={classes.appBarSpacer} />
-      {alert !== "" && <Alert severity="error">{alert}</Alert>}
-
+      {alert !== "" && <Alert severity="error" message={alert} />}
       <Container className={classes.container}>
         <Paper>
           <Title>Explore</Title>
@@ -78,7 +77,7 @@ const ExploreScatter = (props) => {
             <SimpleSelect title="X Axis" setValue={setXDim} value={xDim} />
             <SimpleSelect title="Y Axis" setValue={setYDim} value={yDim} />
           </Grid>
-          {loading && <CircularProgress />}
+          {loading && (<Progress/>)}
           {!loading && (
             <VictoryChart
               theme={VictoryTheme.material}
