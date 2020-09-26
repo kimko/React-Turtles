@@ -14,10 +14,7 @@ import {
   VictoryTooltip,
 } from "victory";
 
-import {
-  Paper,
-  Container,
-} from "@material-ui/core";
+import { Paper, Container } from "@material-ui/core";
 
 import useStyles from "../helper/styles";
 import Title from "../helper/Title";
@@ -58,10 +55,7 @@ const SeasonHistogramBar = (props) => {
           res = await axios.get(
             `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
           );
-        else
-          res = await axios.get(
-            `http://0.0.0.0:5000/sumYearSeasonVictory`
-          );
+        else res = await axios.get(`http://0.0.0.0:5000/sumYearSeasonVictory`);
         // 👆
         const turtleData = res.data.data.turtles;
         setData(turtleData);
@@ -92,7 +86,7 @@ const SeasonHistogramBar = (props) => {
       <Container className={classes.container}>
         <Paper>
           <Title>Season Histogram</Title>
-          {loading && (<Progress/>)}
+          {loading && <Progress />}
           {!loading && (
             <VictoryChart
               containerComponent={
@@ -161,7 +155,7 @@ const SeasonHistogramBar = (props) => {
       </Container>
     </div>
   );
-};;;;;
+};
 
 const SliderContainer = styled.div`
   padding: 16px 25px 10px;

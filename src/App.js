@@ -19,7 +19,7 @@ import {
 import useStyles from "./helper/styles";
 import clsx from "clsx";
 
-import {MainListItems} from "./dashboard/menuItems"
+import { MainListItems } from "./dashboard/menuItems";
 import DashboardComponent from "./dashboard/DashboardComponent";
 import { SeasonCountBar } from "./vis/SeasonCount";
 import { SeasonHistogramBar } from "./vis/SeasonHistogram";
@@ -117,16 +117,16 @@ const App = () => {
         </Drawer>
         <main className={classes.content}>
           <Route exact path="/React-Turtles/">
-            <DashboardComponent dataSource={dataSource}     />
+            <DashboardComponent dataSource={dataSource} />
           </Route>
           <Route path="/React-Turtles/SeasonCount">
-            <SeasonCountBar dataSource={dataSource}     />
+            <SeasonCountBar dataSource={dataSource} />
           </Route>
           <Route path="/React-Turtles/SeasonHistogram">
-            <SeasonHistogramBar dataSource={dataSource}     />
+            <SeasonHistogramBar dataSource={dataSource} />
           </Route>
           <Route path="/React-Turtles/Explore">
-            <ExploreScatter dataSource={dataSource}     />
+            <ExploreScatter dataSource={dataSource} />
           </Route>
         </main>
       </Router>

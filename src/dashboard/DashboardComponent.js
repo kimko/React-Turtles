@@ -17,13 +17,13 @@ const DashbardComponent = (props) => {
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={1}>
           <Grid item md={6}>
-            <SeasonCountBar dataSource={props.dataSource}    />
+            <SeasonCountBar dataSource={props.dataSource} />
           </Grid>
           <Grid item md={6}>
-            <SeasonHistogramBar dataSource={props.dataSource}    />
+            <SeasonHistogramBar dataSource={props.dataSource} />
           </Grid>
           <Grid item md={6}>
-            <ExploreScatter dataSource={props.dataSource}    />
+            <ExploreScatter dataSource={props.dataSource} />
           </Grid>
         </Grid>
       </Container>

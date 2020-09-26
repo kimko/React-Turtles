@@ -33,10 +33,7 @@ const SeasonCountBar = (props) => {
           res = await axios.get(
             `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
           );
-        else
-          res = await axios.get(
-            `http://0.0.0.0:5000/sumYearSeasonVictory`
-          );
+        else res = await axios.get(`http://0.0.0.0:5000/sumYearSeasonVictory`);
         // 👆
         const turtleData = res.data.data.turtles;
         const barElements = Object.keys(turtleData).map((key, index) => {
@@ -69,7 +66,7 @@ const SeasonCountBar = (props) => {
       <Container className={classes.container}>
         <Paper>
           <Title>Count per Season</Title>
-          {loading && (<Progress/>)}
+          {loading && <Progress />}
 
           {/* wrapper component that plots all of its children on the same scale.  */}
           {!loading && (

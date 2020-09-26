@@ -11,7 +11,7 @@ import {
 
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 import useStyles from "../helper/styles";
 import Title from "../helper/Title";
@@ -77,7 +77,7 @@ const ExploreScatter = (props) => {
             <SimpleSelect title="X Axis" setValue={setXDim} value={xDim} />
             <SimpleSelect title="Y Axis" setValue={setYDim} value={yDim} />
           </Grid>
-          {loading && (<Progress/>)}
+          {loading && <Progress />}
           {!loading && (
             <VictoryChart
               theme={VictoryTheme.material}
