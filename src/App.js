@@ -39,7 +39,7 @@ import {
 library.add(faColumns, faChartBar, faSlidersH, faBars, faChevronLeft, faCogs);
 
 const App = () => {
-  const [dataSource, setDataSource] = useState(false);
+  const [dataSource, setDataSource] = useState(true);
   const classes = useStyles();
 
   // Drawer
