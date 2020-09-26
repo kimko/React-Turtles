@@ -18,6 +18,7 @@ import Title from "../helper/Title";
 import { SimpleSelect } from "../helper/SimpleSelect";
 import Alert from "../helper/Alert";
 import Progress from "../helper/Progress";
+import { LocationSelect } from "../helper/LocationSelect";
 
 const ExploreScatter = (props) => {
   const [alert, setAlert] = useState("");
@@ -25,6 +26,7 @@ const ExploreScatter = (props) => {
   const [data, setData] = useState();
   const [xDim, setXDim] = useState("Annuli");
   const [yDim, setYDim] = useState("Weight");
+  const [location, setLocation] = useState("");
   const [legendF, setLegendF] = useState("female");
   const [legendM, setLegendM] = useState("male");
   const [legendU, setLegendU] = useState("unknown");
@@ -35,7 +37,11 @@ const ExploreScatter = (props) => {
       try {
         // TODO refactor 👇😬
         let url;
-        const target = `getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`;
+        let target;
+        if (location)
+          target = `getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}&locations=${location}`;
+        else
+          target = `getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}`;
         if (props.dataSource) url = `https://bmd-micro.herokuapp.com/${target}`;
         else url = `http://0.0.0.0:5000/${target}`;
         if (cache.current[url]) {
@@ -44,6 +50,7 @@ const ExploreScatter = (props) => {
         } else {
           const res = await axios.get(url);
           const turtleData = res.data.data.turtles;
+          console.log(turtleData);
           cache.current[url] = turtleData;
           setData(turtleData);
           setLoading(false);
@@ -56,7 +63,7 @@ const ExploreScatter = (props) => {
         setAlert(err.message);
       }
     })();
-  }, [xDim, yDim, props.dataSource]);
+  }, [xDim, yDim, location, props.dataSource]);
 
   const classes = useStyles();
 
@@ -76,6 +83,7 @@ const ExploreScatter = (props) => {
           <Grid container spacing={0}>
             <SimpleSelect title="X Axis" setValue={setXDim} value={xDim} />
             <SimpleSelect title="Y Axis" setValue={setYDim} value={yDim} />
+            <LocationSelect setValue={setLocation} />
           </Grid>
           {loading && <Progress />}
           {!loading && (
