@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 const LocationSelect = (props) => {
   const classes = useStyles();
   const handleChange = (event, value) => {
-    console.log("Location: ", value);
     props.setValue(
       String(
         Object.keys(value).map((index) => {

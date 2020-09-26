@@ -38,6 +38,7 @@ const ExploreScatter = (props) => {
         // TODO refactor 👇😬
         let url;
         let target;
+        let turtleData;
         if (location)
           target = `getTwoDimensionsPerGenderVictory?dim1=${xDim}&dim2=${yDim}&locations=${location}`;
         else
@@ -45,19 +46,17 @@ const ExploreScatter = (props) => {
         if (props.dataSource) url = `https://bmd-micro.herokuapp.com/${target}`;
         else url = `http://0.0.0.0:5000/${target}`;
         if (cache.current[url]) {
-          const turtleData = cache.current[url];
-          setData(turtleData);
+          turtleData = cache.current[url];
         } else {
           const res = await axios.get(url);
-          const turtleData = res.data.data.turtles;
-          console.log(turtleData);
+          turtleData = res.data.data.turtles;
           cache.current[url] = turtleData;
-          setData(turtleData);
-          setLoading(false);
-          setLegendF(`${turtleData["f"].data.length} f`);
-          setLegendM(`${turtleData["m"].data.length} m`);
-          setLegendU(`${turtleData["unknown"].data.length} ?`);
         }
+        setData(turtleData);
+        setLoading(false);
+        setLegendF(`${turtleData["f"].data.length} f`);
+        setLegendM(`${turtleData["m"].data.length} m`);
+        setLegendU(`${turtleData["unknown"].data.length} ?`);
       } catch (err) {
         console.log(err.message);
         setAlert(err.message);
