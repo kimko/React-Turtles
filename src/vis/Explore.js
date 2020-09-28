@@ -35,6 +35,21 @@ const ExploreScatter = (props) => {
   useEffect(() => {
     (async () => {
       try {
+        if (data) {
+          setLegendF(`${data["f"].data.length} f`);
+          setLegendM(`${data["m"].data.length} m`);
+          setLegendU(`${data["unknown"].data.length} ?`);
+        }
+      } catch (err) {
+        console.log(err.message);
+        setAlert(err.message);
+      }
+    })();
+  }, [data]);
+
+  useEffect(() => {
+    (async () => {
+      try {
         // TODO refactor 👇😬
         let url;
         let target;
@@ -54,9 +69,6 @@ const ExploreScatter = (props) => {
         }
         setData(turtleData);
         setLoading(false);
-        setLegendF(`${turtleData["f"].data.length} f`);
-        setLegendM(`${turtleData["m"].data.length} m`);
-        setLegendU(`${turtleData["unknown"].data.length} ?`);
       } catch (err) {
         console.log(err.message);
         setAlert(err.message);
