@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import axios from "axios";
 
@@ -18,24 +18,36 @@ import useStyles from "../helper/styles";
 import Title from "../helper/Title";
 import Alert from "../helper/Alert";
 import Progress from "../helper/Progress";
+import { LocationSelect } from "../helper/LocationSelect";
 
 const SeasonCountBar = (props) => {
   const [bars, setBars] = useState(<VictoryBar />);
   const [alert, setAlert] = useState("");
   const [legendData, setLegendData] = useState([]);
+  const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
+  const cache = useRef({});
+
   useEffect(() => {
     (async () => {
       try {
         // TODO refactor 👇😬
-        let res;
-        if (props.dataSource)
-          res = await axios.get(
-            `https://bmd-micro.herokuapp.com/sumYearSeasonVictory`
-          );
-        else res = await axios.get(`http://0.0.0.0:5000/sumYearSeasonVictory`);
-        // 👆
-        const turtleData = res.data.data.turtles;
+        let url;
+        let target;
+        let turtleData;
+        if (location) target = `sumYearSeasonVictory?locations=${location}`;
+        else target = `sumYearSeasonVictory`;
+        if (props.dataSource) url = `https://bmd-micro.herokuapp.com/${target}`;
+        else url = `http://0.0.0.0:5000/${target}`;
+        if (cache.current[url]) {
+          turtleData = cache.current[url];
+        } else {
+          const res = await axios.get(url);
+          turtleData = res.data.data.turtles;
+          cache.current[url] = turtleData;
+        }
+        setLoading(false);
+        setLegendData([]);
         const barElements = Object.keys(turtleData).map((key, index) => {
           setLegendData((legendData) => [...legendData, { name: key }]);
           return (
@@ -54,7 +66,7 @@ const SeasonCountBar = (props) => {
         setAlert(err.message);
       }
     })();
-  }, [props.dataSource]);
+  }, [props.dataSource, location]);
 
   const classes = useStyles();
 
@@ -66,6 +78,7 @@ const SeasonCountBar = (props) => {
       <Container className={classes.container}>
         <Paper>
           <Title>Count per Season</Title>
+          <LocationSelect setValue={setLocation} />
           {loading && <Progress />}
 
           {/* wrapper component that plots all of its children on the same scale.  */}
