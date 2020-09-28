@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/React-Turtles/precache-manifest.f611b70e13b85fb5f762b87b3c71ed70.js"
+  "/React-Turtles/precache-manifest.7bbc88383a62d5db49b3efbf2988d9ee.js"
 );
 
 self.addEventListener('message', (event) => {
